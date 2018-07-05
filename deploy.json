@@ -1,50 +1,49 @@
 {
-  "$schema":
-    "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "storageAccounts_podcastbuilds_name": {
-      "defaultValue": "electron-app-build",
-      "type": "String"
-    }
-  },
-  "variables": {},
-  "resources": [
-    {
-      "comments": "Storage deployment for electron continuous deployment",
-      "type": "Microsoft.Storage/storageAccounts",
-      "sku": {
-        "name": "Standard_RAGRS",
-        "tier": "Standard"
-      },
-      "kind": "StorageV2",
-      "name": "[parameters('storageAccounts_name')]",
-      "apiVersion": "2018-02-01",
-      "location": "westus",
-      "tags": {},
-      "scale": null,
-      "properties": {
-        "networkAcls": {
-          "bypass": "AzureServices",
-          "virtualNetworkRules": [],
-          "ipRules": [],
-          "defaultAction": "Allow"
-        },
-        "supportsHttpsTrafficOnly": false,
-        "encryption": {
-          "services": {
-            "file": {
-              "enabled": true
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccounts_electroncdbuilds_name": {
+            "defaultValue": "electroncdbuilds",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/985a2edb-7e5a-4302-9c4a-379825dbed3b/resourceGroups/electron-cd-template/providers/Microsoft.Storage/storageAccounts/electroncdbuilds'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
             },
-            "blob": {
-              "enabled": true
-            }
-          },
-          "keySource": "Microsoft.Storage"
-        },
-        "accessTier": "Hot"
-      },
-      "dependsOn": []
-    }
-  ]
+            "kind": "StorageV2",
+            "name": "[parameters('storageAccounts_electroncdbuilds_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "westus",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            },
+            "dependsOn": []
+        }
+    ]
 }
